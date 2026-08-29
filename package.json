@@ -1,0 +1,14 @@
+{
+  "name": "talent-pool-management",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Root orchestration scripts for local dev. The real frontend deps live in frontend/package.json; Vercel builds from there directly.",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

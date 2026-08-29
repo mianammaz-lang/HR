@@ -203,4 +203,3 @@ and Vercel alike — no duplicated/drifting copies.
   an API key for it under **Settings → Webhook** — set one before relying
   on it in production, since unset it accepts CV submissions unauthenticated.
 - CORS is restricted to `CORS_ORIGINS`, not `*`.
-"# HR" 

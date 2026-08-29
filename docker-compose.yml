@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL:?Set DATABASE_URL in your .env file}
+      - JWT_SECRET=${JWT_SECRET:?Set JWT_SECRET in your .env file}
+      - SEED_ADMIN_EMAIL=${SEED_ADMIN_EMAIL:-}
+      - SEED_ADMIN_PASSWORD=${SEED_ADMIN_PASSWORD:-}
+      - SEED_SECRET=${SEED_SECRET:-}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000}
+      - ERP_NEXT_URL=${ERP_NEXT_URL:-}
+      - ERP_API_KEY=${ERP_API_KEY:-}
+      - ERP_API_SECRET=${ERP_API_SECRET:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
